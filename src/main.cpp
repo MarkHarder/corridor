@@ -1,9 +1,12 @@
 #include <iostream>
 
+#include "Player.h"
+
 using namespace std;
 
 int main() {
   char input;
+  Player player;
 
   // Room 1
   cout << "You see a small, silver dagger on the floor." << endl;
