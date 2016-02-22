@@ -1,4 +1,5 @@
 #include <iostream>
+#include <map>
 
 #include "Player.h"
 
@@ -13,8 +14,23 @@ void printItems(vector<string> items) {
   }
 }
 
+void printShop(map<string, int> item_prices) {
+  for (map<string, int>::iterator it = item_prices.begin(); it != item_prices.end(); it++) {
+    cout << it->first;
+    for (int i = 10 - it->first.size(); i > 0; i--) {
+      cout << ".";
+    }
+    if (it->second < 10) {
+      cout << ".";
+    }
+    cout << it->second << endl;
+  }
+}
+
 int main() {
   char input;
+  string str;
+  map<string, int> shop;
   Player player;
 
   // Room 1
@@ -86,9 +102,51 @@ int main() {
   }
 
   // Room 5
+  shop.clear();
+  shop.insert(pair<string, int>("rope", 10));
+  shop.insert(pair<string, int>("fruit", 8));
+  shop.insert(pair<string, int>("gloves", 6));
+  shop.insert(pair<string, int>("dagger", 10));
+  shop.insert(pair<string, int>("orb", 44));
+  shop.insert(pair<string, int>("statue", 10));
+
   printItems(player.getItems());
   cout << "Score: " << player.getPoints() << endl;
-  cout << "Room 5" << endl;
+  cout << "You see a shop. Type the name of an item to buy or sell it. Type done to leave." << endl;
+  cout << endl;
+
+  printShop(shop);
+
+  str = "";
+  while (str != "done") {
+    cout << "Score: " << player.getPoints() << endl;
+    cout << "> ";
+
+    cin >> str;
+
+    for (map<string, int>::iterator it = shop.begin(); it != shop.end(); it++) {
+      if (str == it->first) {
+        if (player.hasItem(it->first.c_str())) {
+          cout << "Sold." << endl;
+          player.addPoints(it->second);
+          player.removeItem(it->first.c_str());
+        } else {
+          if (player.getPoints() >= it->second) {
+            cout << "Bought." << endl;
+            player.addItem(it->first.c_str());
+            player.addPoints(-(it->second));
+          } else {
+            cout << "You don't have enough points for that." << endl;
+          }
+        }
+      }
+    }
+  }
+
+  // Room 6
+  printItems(player.getItems());
+  cout << "Score: " << player.getPoints() << endl;
+  cout << "Room 6" << endl;
 
   return 0;
 }

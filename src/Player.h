@@ -15,8 +15,8 @@ class Player {
     int getPoints();
     void addItem(const char *item);
     std::vector<std::string> getItems();
-    bool hasItem(std::string *item);
-    void removeItem(std::string *item);
+    bool hasItem(const char *item);
+    void removeItem(const char *item);
 };
 
 #endif

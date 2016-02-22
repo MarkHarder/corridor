@@ -21,12 +21,14 @@ std::vector<std::string> Player::getItems() {
   return items;
 }
 
-bool Player::hasItem(std::string *item) {
-  return (std::find(items.begin(), items.end(), *item) != items.end());
+bool Player::hasItem(const char *item) {
+  std::string new_item( item );
+  return (std::find(items.begin(), items.end(), new_item) != items.end());
 }
 
-void Player::removeItem(std::string *item) {
-  int i = std::find(items.begin(), items.end(), *item) - items.begin();
+void Player::removeItem(const char *item) {
+  std::string new_item( item );
+  int i = std::find(items.begin(), items.end(), new_item) - items.begin();
 
   if (i < items.size()) {
     items.erase(items.begin() + i);
