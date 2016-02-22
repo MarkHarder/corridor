@@ -34,7 +34,24 @@ int main() {
 
   // Room 2
   printItems(player.getItems());
-  cout << "Room two description." << endl;
+  cout << "You see a glass globe on a plinth." << endl;
+  cout << "1> Take it" << endl;
+  cout << "2. Leave it" << endl;
+  cout << "> ";
+
+  cin >> input;
+
+  if (input == '1') {
+    cout << "As you touch the glass, it explodes into many sharp shards." << endl;
+    player.addPoints(-8);
+  } else {
+    cout << "You walk past the orb to the next room." << endl;
+  }
+
+  // Room 3
+  printItems(player.getItems());
+  cout << "Score: " << player.getPoints() << endl;
+  cout << "Room 3 description" << endl;
 
   return 0;
 }
