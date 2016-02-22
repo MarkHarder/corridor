@@ -122,7 +122,7 @@ int main() {
     cout << "Score: " << player.getPoints() << endl;
     cout << "> ";
 
-    cin >> str;
+    getline(cin, str);
 
     for (map<string, int>::iterator it = shop.begin(); it != shop.end(); it++) {
       if (str == it->first) {
@@ -172,7 +172,7 @@ int main() {
 
   if (input == '1') {
     cout << "You take the bottle." << endl;
-    player.addItem("potion");
+    player.addItem("blue liquid");
   } else {
     cout << "You leave it." << endl;
   }
@@ -190,10 +190,10 @@ int main() {
 
   if (input == '1') {
     cout << "You take a sheet of the paper." << endl;
-    player.addItem("paper");
+    player.addItem("purple paper");
   } else if (input == '2') {
     cout << "You get a papercut and decide to just take the top sheet." << endl;
-    player.addItem("paper");
+    player.addItem("purple paper");
     player.addPoints(-4);
   } else {
     cout << "You leave it." << endl;
@@ -220,7 +220,50 @@ int main() {
   // Room 10
   printItems(player.getItems());
   cout << "Score: " << player.getPoints() << endl;
-  cout << "Room 10" << endl;
+  cout << "You see a begger hunched against the wall. Type done to stop talking to him." << endl;
+
+  getline(cin, str);
+  str = "";
+  while (str != "done") {
+    cout << "> ";
+
+    getline(cin, str);
+
+    if (str == "name") {
+      cout << "My name is Telemachus. I have no money. I have no family." << endl;
+    } else if (str == "quest") {
+      cout << "Can you deliver this letter to Marcus? (yes/no)" << endl;
+      cout << "> ";
+
+      getline(cin, str);
+
+      if (str == "yes") {
+        if (!player.hasItem("letter for Marcus")) {
+          cout << "Thank you! Here is my letter." << endl;
+          player.addItem("letter for Marcus");
+        }
+      } else {
+        cout << "Oh well. I'll try to find someone else." << endl;
+      }
+    } else if (str == "eegg") {
+      cout << "He produces a wooden horse toy and plays with it." << endl;
+    } else if (str == "give fruit") {
+      if (player.hasItem("fruit")) {
+        cout << "Thank you! That is very generous of you. Please, take this harpoon." << endl;
+        player.removeItem("fruit");
+        player.addItem("harpoon");
+      }
+    } else if (str == "blue liquid") {
+      cout << "He shrugs his shoulders. Probably magical." << endl;
+    } else if (str == "purple paper") {
+      cout << "He shrugs. It probably has magical properties." << endl;
+    }
+  }
+
+  // Room 11
+  printItems(player.getItems());
+  cout << "Score: " << player.getPoints() << endl;
+  cout << "Room 11" << endl;
 
   return 0;
 }
