@@ -95,7 +95,7 @@ int main() {
   if (input == '1') {
     cout << "The imps are not happy to see you try to take them." << endl;
     player.addPoints(-8);
-  } else if (input =='2') {
+  } else if (input == '2') {
     cout << "You walk past them." << endl;
   } else {
     cout << "You try to talk to them, but they just giggle." << endl;
@@ -146,7 +146,81 @@ int main() {
   // Room 6
   printItems(player.getItems());
   cout << "Score: " << player.getPoints() << endl;
-  cout << "Room 6" << endl;
+  cout << "You see some bricks scattered on the floor here." << endl;
+  cout << "1. Stack them" << endl;
+  cout << "2. Leave them" << endl;
+  cout << "> ";
+
+  cin >> input;
+
+  if (input == '1') {
+    cout << "Everything looks much more orderly now." << endl;
+    player.addPoints(2);
+  } else {
+    cout << "You leave them." << endl;
+  }
+
+  // Room 7
+  printItems(player.getItems());
+  cout << "Score: " << player.getPoints() << endl;
+  cout << "You see a glass bottle filled with blue liquid on a plinth." << endl;
+  cout << "1. Take it" << endl;
+  cout << "2. Leave it" << endl;
+  cout << "> ";
+
+  cin >> input;
+
+  if (input == '1') {
+    cout << "You take the bottle." << endl;
+    player.addItem("potion");
+  } else {
+    cout << "You leave it." << endl;
+  }
+
+  // Room 8
+  printItems(player.getItems());
+  cout << "Score: " << player.getPoints() << endl;
+  cout << "You see stack of purple paper on a glass table." << endl;
+  cout << "1. Take a sheet" << endl;
+  cout << "2. Take the stack" << endl;
+  cout << "3. Leave it" << endl;
+  cout << "> ";
+
+  cin >> input;
+
+  if (input == '1') {
+    cout << "You take a sheet of the paper." << endl;
+    player.addItem("paper");
+  } else if (input == '2') {
+    cout << "You get a papercut and decide to just take the top sheet." << endl;
+    player.addItem("paper");
+    player.addPoints(-4);
+  } else {
+    cout << "You leave it." << endl;
+  }
+
+  // Room 9
+  printItems(player.getItems());
+  cout << "Score: " << player.getPoints() << endl;
+  cout << "You see a metal grate in the wall." << endl;
+  cout << "1. Look into it" << endl;
+  cout << "2. Try to open it" << endl;
+  cout << "3. Leave it" << endl;
+  cout << "> ";
+
+  cin >> input;
+
+  if (input == '1' || input == '2') {
+    cout << "When you get near the grate a spider jumps out and bites you." << endl;
+    player.addPoints(-10);
+  } else {
+    cout << "You leave it." << endl;
+  }
+
+  // Room 10
+  printItems(player.getItems());
+  cout << "Score: " << player.getPoints() << endl;
+  cout << "Room 10" << endl;
 
   return 0;
 }
