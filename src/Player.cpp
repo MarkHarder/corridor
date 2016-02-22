@@ -12,8 +12,9 @@ int Player::getPoints() {
   return points;
 }
 
-void Player::addItem(std::string *item) {
-  items.push_back( *item );
+void Player::addItem(const char *item) {
+  std::string new_item( item );
+  items.push_back( new_item );
 }
 
 std::vector<std::string> Player::getItems() {

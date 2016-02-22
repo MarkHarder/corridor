@@ -13,7 +13,7 @@ class Player {
     Player();
     void addPoints(int x);
     int getPoints();
-    void addItem(std::string *item);
+    void addItem(const char *item);
     std::vector<std::string> getItems();
     bool hasItem(std::string *item);
     void removeItem(std::string *item);
